@@ -161,6 +161,3 @@ This project is for academic and non-commercial use only.
 
 ```
 
----
-```
-
