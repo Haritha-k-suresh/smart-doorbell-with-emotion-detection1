@@ -1,45 +1,166 @@
+```markdown
 # 🔔 Smart Doorbell with Emotion Detection
 
-Hi! I'm **Haritha K. Suresh**, and this is my AI-based home security project — a smart doorbell system that detects visitor emotions in real-time using deep learning and computer vision. The system proactively alerts homeowners through email if a **negative emotion** is detected, offering a more intelligent layer of protection than traditional surveillance.
+An AI-powered smart surveillance system that proactively monitors visitor emotions in real-time using computer vision and deep learning. This intelligent doorbell system alerts homeowners by email if negative emotions like anger, fear, sadness, or disgust are detected—enhancing traditional home security with emotion-aware intelligence.
 
 ---
 
-## 🧠 Key Features
+## 💡 Project Highlights
 
-- 🚪 Emotion-based visitor monitoring at your doorstep  
-- 🎯 Real-time facial emotion recognition with CNN  
-- 📧 Automatic email alerts on detecting **negative emotions**  
-- 🔒 Prevents spamming with alert count limits  
-- 🧰 Built with OpenCV, TensorFlow, Keras, and Python  
-
----
-
-## 💡 Project Summary
-
-The Smart Doorbell system uses a webcam (or an ESP32-CAM module in future versions) to capture visitor images when someone is at the door. It uses a **Convolutional Neural Network (CNN)** trained on facial emotion data to classify emotions into **positive** or **negative** categories.
-
-If a **negative emotion** is detected (like *anger, fear, sadness, or disgust*), the system sends an **email alert** to the homeowner.
+- 🔍 Real-time facial emotion recognition
+- ✉️ Sends email alerts when negative emotions are detected
+- 🎯 Classifies visitor emotions into positive or negative
+- 💬 Displays emotion results with visual overlays using webcam
+- 🧠 Trained from scratch on the FER-2013 dataset
+- 🔐 Prevents spam by limiting alerts per session
 
 ---
 
-## 😄 Emotion Categories
+## 🧠 Features
 
-| Positive Emotions           | Negative Emotions                      |
-|-----------------------------|----------------------------------------|
-| Happy, Neutral, Surprised   | Angry, Sad, Fearful, Disgusted         |
+| Feature                     | Description                                                   |
+|----------------------------|---------------------------------------------------------------|
+| Face Detection             | Uses OpenCV Haar Cascade                                      |
+| Emotion Classification     | CNN model built using TensorFlow/Keras                        |
+| Real-time Monitoring       | Webcam-based facial expression recognition                    |
+| Email Notification         | Sends alert with emotion status via SMTP                      |
+| Alert Count Control        | Prevents email spam by limiting to 5 alerts per run           |
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Technologies Used
 
-- Python
+- Python 3.8+
 - OpenCV
 - TensorFlow / Keras
 - NumPy
 - FER-2013 Dataset
-- SMTP (for email alerts)
+- Gmail SMTP for email notifications
 
 ---
 
-## 📂 Folder Structure
+## 📦 Folder Structure
+
+```
+
+📁 smart-doorbell/
+├── alertupdated.py            # Main system: emotion detection + alerts
+├── model\_training.py          # CNN training script (FER-2013)
+├── emotion\_detection\_model.h5 # Trained Keras model file
+├── .env                       # Email credentials (excluded in .gitignore)
+├── .gitignore                 # Prevents secrets from being committed
+
+````
+
+---
+
+## 🧪 Emotion Classification
+
+The model classifies the following emotions:
+
+| Positive        | Negative               |
+|----------------|------------------------|
+| Happy, Neutral, Surprised | Angry, Sad, Fearful, Disgusted |
+
+Detected emotions are labeled and color-coded on the video feed:
+- 🟢 Green = Positive
+- 🔴 Red = Negative
+
+---
+
+## 🛠️ How to Run
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Haritha-k-suresh/smart-doorbell.git
+cd smart-doorbell
+````
+
+### 2. Set Up the Environment
+
+Install required packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Create a `.env` File
+
+Add your email credentials (use an **App Password** if using Gmail):
+
+```
+SENDER_EMAIL=your_email@gmail.com
+SENDER_PASSWORD=your_app_password
+RECEIVER_EMAIL=recipient_email@gmail.com
+```
+
+### 4. Run the Application
+
+```bash
+python alertupdated.py
+```
+
+Press `q` to stop the live feed.
+
+---
+
+## 🧠 Model Summary
+
+* Input: 48x48 grayscale images
+* Architecture: 4 Conv blocks + BatchNorm + Dropout + Dense layers
+* Activation: ReLU (hidden), Softmax (output)
+* Optimizer: Adam
+* Training Accuracy: 99%
+* Validation Accuracy: \~82%
+
+---
+
+## 📊 Sample Output
+
+```shell
+Detected Emotion: angry (Negative)
+📧 Sending Email Alert 1 of 5...
+✅ Email Alert Sent!
+```
+
+Emotion detection is overlaid live on the webcam video stream.
+
+---
+
+## 🛡️ Security Notes
+
+* `.env` file is ignored in `.gitignore`
+* Do **not** commit your real email/password
+* Use [Gmail App Passwords](https://support.google.com/accounts/answer/185833) for secure email login
+
+---
+
+## 🌱 Future Improvements
+
+* Integrate ESP32-CAM for IoT-based deployment
+* Add support for **voice emotion detection**
+* Optimize for edge devices (on-device inference)
+* Enable **multi-camera support** for wider surveillance
+* Add cloud dashboard for **alert logging and analytics**
+
+---
+
+## 👤 Author
+
+**Haritha K. Suresh**
+B.Tech in Artificial Intelligence and Data Science
+📧 [harithaksuresh6@gmail.com](mailto:harithaksuresh6@gmail.com)
+🔗 [LinkedIn](https://www.linkedin.com/in/haritha-k-suresh-92a55b275/)
+
+---
+
+## 🏁 License
+
+This project is for academic and non-commercial use only.
+
+```
+
+---
+```
 
